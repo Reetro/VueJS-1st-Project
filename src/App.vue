@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img src="./assets/adapose.jpg">
-    <test/>
+    <test msg="am sorry I can't do that dave"/>
   </div>
 </template>
 

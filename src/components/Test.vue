@@ -8,17 +8,29 @@
       <li v-for="Item in items">{{Item.title}}</li>
     </ul>
     <button v-on:click="greet">Wooh</button>
+    <input type="text" v-on:keyup="pressKey" v-on:keyup.enter="enterHit"><br />
+    <label>First Name:</label><input type="text" v-model="user.firstName"><br />
+    <label>Last Name:</label><input type="text" v-model="user.lastName"><br />
+    <h3>{{fullName}}</h3>
+    <h2>{{msg}}</h2>
   </div>
 </template>
 
 <script>
 export default {
 name: 'test',
+props: {
+  msg: {
+type: String,
+default:'Bleh'
+  }
+},
 data () {
   return {
   title: 'Okaisfunhouse.com',
   user: {
-    firstName: 'Okai: wooh 1st website',
+    firstName: 'Okai',
+    lastName: 'dookie'
     },
   showName: true,
   items: [
@@ -31,6 +43,17 @@ data () {
   methods: {
     greet: function(){
       alert('wooh stop pushing my buttons bro');
+    },
+    pressKey: function(e){
+      console.log(e.target.value);
+    },
+    enterHit: function(){
+      console.log("you hit enter")
+    }
+  },
+  computed: {
+    fullName: function(){
+      return this.user.firstName+ ' '+this.user.lastName
     }
   }
 }
