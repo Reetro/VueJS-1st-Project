@@ -1,17 +1,18 @@
 <template>
   <div id="app">
     <img src="./assets/adapose.jpg">
-    <test msg="am sorry I can't do that dave"/>
+    <users/>
   </div>
 </template>
 
 <script>
-import test from './components/test'
+import users from './components/users'
+import test from './components/Test'
 
 export default {
   name: 'App',
   components: {
-    test
+    users,test
   }
 }
 </script>
