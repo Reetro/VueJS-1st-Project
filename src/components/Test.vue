@@ -1,10 +1,10 @@
 <template>
-  <div class = "test">
+  <div class = "test" id="content">
     <input type="text" v-model="title"><br />
     <h1>{{title}}</h1>
     <p v-if="showName">{{user.firstName}}</p>
     <p v-else>Plumby</p>
-    <ul>
+    <ul id="list">
       <li v-for="Item in items">{{Item.title}}</li>
     </ul>
     <button v-on:click="greet">Wooh</button>
@@ -60,5 +60,19 @@ data () {
 </script>
 
 <style scoped>
+
+#content{
+  max-width: 500px;
+  margin:auto;
+  text-align: center;
+}
+
+#list{
+  list-style: decimal;
+  margin: auto;
+  list-style-position: inside;
+  padding: 30px 15px;
+  text-align: center;
+}
 
 </style>

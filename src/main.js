@@ -24,7 +24,8 @@ const router = new vueRouter({
 new Vue({
   router,
   components: { App },
-  template: `
+  template:
+  `
   <div id=app>
     <ul>
       <li><router-link to="/">Users</router-link></li>
@@ -32,5 +33,6 @@ new Vue({
     </ul>
     <router-view></router-view>
   </div>
+
   `
 }).$mount('#app')
