@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img src="./assets/adapose.jpg">
+    
     <users/>
   </div>
 </template>

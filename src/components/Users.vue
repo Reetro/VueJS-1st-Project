@@ -1,6 +1,8 @@
 <template>
 
   <div class="users" id="content">
+
+    <img src="static/adapose.jpg"/>
       <h1>Users</h1>
       <form v-on:submit="addUser">
         <input type="text" v-model="newUser.name" placeholder="Enter Name" id = "nameBox">
