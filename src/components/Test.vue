@@ -18,19 +18,19 @@
 
 <script>
 export default {
-name: 'test',
-props: {
-  msg: {
-type: String,
-default:'Bleh'
+  name: 'test',
+  props: {
+    msg: {
+      type: String,
+      default:'Bleh'
   }
 },
 data () {
   return {
   title: 'Okaisfunhouse.com',
   user: {
-    firstName: 'Okai',
-    lastName: 'dookie'
+      firstName: 'Okai',
+      lastName: 'dookie'
     },
   showName: true,
   items: [

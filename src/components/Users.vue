@@ -5,13 +5,13 @@
     <img src="static/adapose.jpg"/>
       <h1>Users</h1>
       <form v-on:submit="addUser">
-        <input type="text" v-model="newUser.name" placeholder="Enter Name" id = "nameBox">
+        <input type="text" v-model="newUser.name" placeholder="Enter Name" id="nameBox">
         <br/>
-        <input type="text" v-model="newUser.email" placeholder="Enter email"id = "emailBox">
+        <input type="text" v-model="newUser.email" placeholder="Enter email" id="emailBox">
         <br/>
         <input type="submit" value="Submit" id="submitButton">
       </form>
-      <ul id=contactlist>
+      <ul id="contactlist">
         <li v-for="user in users">
           <input type="checkbox" class="toggle" v-model="user.contacted">
           <span :class="{contacted: user.contacted}" id="usersinlist">
