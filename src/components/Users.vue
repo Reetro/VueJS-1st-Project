@@ -77,6 +77,7 @@ text-decoration: line-through;
   list-style-position: inside;
   padding: 30px 15px;
   text-align: center;
+  white-space: nowrap;
   }
 
   #usersinlist{
