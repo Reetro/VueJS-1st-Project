@@ -6,6 +6,7 @@ import vueResource from 'vue-resource'
 import vueRouter from 'vue-router'
 import Users from './components/Users'
 import Test from './components/Test'
+import User from './models/User'
 
 Vue.use(vueResource)
 Vue.use(vueRouter)

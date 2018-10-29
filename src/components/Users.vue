@@ -1,9 +1,8 @@
 <template>
-
   <div class="users" id="content">
-
     <img src="static/adapose.jpg"/>
       <h1>Users</h1>
+      <h2>Toatal Number of users: {{users.length}}</h2>
       <form v-on:submit="addUser">
         <input type="text" v-model="newUser.name" placeholder="Enter Name" id="nameBox">
         <br/>
@@ -15,46 +14,74 @@
         <li v-for="user in users">
           <input type="checkbox" class="toggle" v-model="user.contacted">
           <span :class="{contacted: user.contacted}" id="usersinlist">
-            <span v-on:click="nameClicked(user)">{{user.name}}: {{user.email}}</span> <button class="xButton" v-on:click="deleteUser(user)">X</button>
+            <span v-on:click="toggleUserContacted(user)">{{user.name}}: {{user.email}}</span> <button class="xButton" v-on:click="deleteUser(user)">X</button>
           </span>
         </li>
       </ul>
+      <span>
+        <h2 class = "peopleContacted">Percent contacted: {{percentContacted}} % </h2>
+        <h3 class = "acceptedContacts">Percent accepted: </h3>
+      </span>
   </div>
-
 </template>
 
 <script>
+import User from '../models/User.js'
 
 export default {
-name: 'users',
-data () {
-  return {
-    newUser: {},
-    users: []
+  name: 'users',
+  data () {
+    return {
+      newUser: {},
+      users: []
     }
   },
   methods: {
-      addUser: function(e){
-        this.users.push({
-          name: this.newUser.name,
-          email: this.newUser.email,
-          contacted: false
-        });
-        e.preventDefault();
-      },
-      deleteUser: function(user){
-        this.users.splice(this.users.indexOf(user), 1);
+    addUser: function (e) {
+      this.users.push({
+        name: this.newUser.name,
+        email: this.newUser.email,
+        contacted: false
+      });
+      e.preventDefault();
     },
-    nameClicked: function(user){
-      this.users[this.users.indexOf(user)].contacted = !user.contacted
+    deleteUser: function (user) {
+      this.users.splice(this.users.indexOf(user), 1);
+    },
+    toggleUserContacted: function (user) {
+      this.setUserContacted(user, !user.contacted)
+    },
+    setUserContacted: function (user, contacted) {
+      this.users[this.users.indexOf(user)].contacted = contacted
     }
   },
-  created: function(){
+  created: function () {
     this.$http.get('https://jsonplaceholder.typicode.com/users')
-      .then(function(response){this.users = response.data});
+      .then(function (response) {
+        for (let user of response.data) {
+          this.users.push(new User(user.name, user.email))
+        }
+      });
+  },
+  computed: {
+    amountOfUsers: function () {
+      return this.users.length
+    },
+    amountContacted: function () {
+      var totalContacted = 0
+      for (let user of this.users) {
+        if (user.contacted) {
+          totalContacted ++
+        }
+      }
+      console.log(totalContacted)
+      return totalContacted
+    },
+    percentContacted: function () {
+      return Math.floor((this.amountContacted / this.amountOfUsers) * 100)
     }
   }
-
+}
 </script>
 
 <style scoped>
