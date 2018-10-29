@@ -1,8 +1,11 @@
 <template>
   <div class="users" id="content">
+    <h1>Users</h1>
+    <div class="toatalNumber"><h2>Toatal Number of users</h2>
+    <h2 class="amountOfUsersText">{{amountOfUsers}}</h2></div>
+    <div class="percentContacted"><h2 class = "peopleContacted">Percent contacted: {{percentContacted}} % </h2></div>
+    <div><h3 class = "acceptedContacts">Percent accepted: </h3></div>
     <img src="static/adapose.jpg"/>
-      <h1>Users</h1>
-      <h2>Toatal Number of users: {{users.length}}</h2>
       <form v-on:submit="addUser">
         <input type="text" v-model="newUser.name" placeholder="Enter Name" id="nameBox">
         <br/>
@@ -18,10 +21,6 @@
           </span>
         </li>
       </ul>
-      <span>
-        <h2 class = "peopleContacted">Percent contacted: {{percentContacted}} % </h2>
-        <h3 class = "acceptedContacts">Percent accepted: </h3>
-      </span>
   </div>
 </template>
 
@@ -74,7 +73,6 @@ export default {
           totalContacted ++
         }
       }
-      console.log(totalContacted)
       return totalContacted
     },
     percentContacted: function () {
@@ -86,64 +84,77 @@ export default {
 
 <style scoped>
 
-.contacted{
-text-decoration: line-through;
-}
-
-.xButton{
-  background-color: white;
-  border: none;
-  text-align: center;
-  font-size: 25px;
-}
-
-.toggle{
-  padding: 30px 25px;
-}
-
-#contactlist{
-  list-style: decimal;
-  margin: auto;
-  list-style-position: inside;
-  padding: 30px 15px;
-  text-align: center;
-  white-space: nowrap;
+  .amountOfUsersText{
+    text-align: center;
   }
 
-  #usersinlist{
-    font-size: 20px;
-    position: static;
+  .toatalNumber{
+    border: 1px solid black;
+    box-sizing: border-box;
+    box-shadow: 1px 1px;
+    width: 230px;
+    text-align: center;
     display: inline-block;
   }
 
-  #nameBox{
-    width: 30%;
-    padding: 5px 5px;
-    margin: auto;
-    box-sizing: border-box;
+  .contacted{
+  text-decoration: line-through;
   }
 
-  #emailBox{
-    width: 30%;
-    padding: 5px 5px;
-    margin: auto;
-    box-sizing: border-box;
-  }
-
-  #submitButton{
+  .xButton{
     background-color: white;
-    border-width: thin;
-    font-size: 15px;
-    display: inline;
+    border: 1px;
     text-align: center;
-    width: 150px;
-    height: 40px;
+    font-size: 25px;
   }
 
-  #content{
-    max-width: 500px;
-    margin:auto;
-    text-align: center;
+  .toggle{
+    padding: 30px 25px;
   }
+
+  #contactlist{
+    list-style: decimal;
+    margin: auto;
+    list-style-position: inside;
+    padding: 30px 15px;
+    text-align: center;
+    white-space: nowrap;
+    }
+
+    #usersinlist{
+      font-size: 20px;
+      position: static;
+      display: inline-block;
+    }
+
+    #nameBox{
+      width: 30%;
+      padding: 5px 5px;
+      margin: auto;
+      box-sizing: border-box;
+    }
+
+    #emailBox{
+      width: 30%;
+      padding: 5px 5px;
+      margin: auto;
+      box-sizing: border-box;
+    }
+
+    #submitButton{
+      background-color: white;
+      border-width: thin;
+      font-size: 15px;
+      display: inline;
+      text-align: center;
+      width: 150px;
+      height: 40px;
+    }
+
+    #content{
+      max-width: 500px;
+      margin:auto;
+      text-align: center;
+    }
 
 </style>
