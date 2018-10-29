@@ -1,10 +1,16 @@
 <template>
   <div class="users" id="content">
     <h1>Users</h1>
-    <div class="toatalNumber"><h2>Toatal Number of users</h2>
-    <h2 class="amountOfUsersText">{{amountOfUsers}}</h2></div>
-    <div class="percentContacted"><h2 class = "peopleContacted">Percent contacted: {{percentContacted}} % </h2></div>
-    <div><h3 class = "acceptedContacts">Percent accepted: </h3></div>
+      <div class="container">
+      <div class="toatalNumberBox"><h2>Toatal Number of users</h2>
+        <h2 class="amountOfUsersText">{{amountOfUsers}}</h2>
+      </div>
+      <div class="percentContactedBox"><h2 class = "peopleContactedHeader">Percent contacted</h2>
+        <h2 class="percentContactedText">{{percentContacted}}%</h2></div>
+      <div class="acceptedContactsBox">
+        <h2 class = "acceptedContacts">Percent accepted:</h2>
+      </div>
+    </div>
     <img src="static/adapose.jpg"/>
       <form v-on:submit="addUser">
         <input type="text" v-model="newUser.name" placeholder="Enter Name" id="nameBox">
@@ -84,17 +90,54 @@ export default {
 
 <style scoped>
 
+  .container{
+    width: 700px;
+    box-sizing: border-box;
+    text-align: center;
+    display: inline-block;
+    margin: auto;
+  }
+
+  .acceptedContactsBox{
+    border: 2px solid black;
+    box-sizing: border-box;
+    box-shadow: .5px .5px;
+    width: 230px;
+    height: 130px;
+    text-align: center;
+    float: right;
+  }
+
+  .percentContactedBox{
+    border: 2px solid black;
+    box-sizing: border-box;
+    box-shadow: .5px .5px;
+    width: 230px;
+    height: 130px;
+    text-align: center;
+    float: left;
+  }
+
+  .toatalNumberBox{
+    border: 2px solid black;
+    box-sizing: border-box;
+    box-shadow: .5px .5px;
+    width: 230px;
+    height: 130px;
+    text-align: center;
+    display: inline-block;
+  }
+
+  .peopleContactedHeader{
+    text-align: center;
+  }
+
   .amountOfUsersText{
     text-align: center;
   }
 
-  .toatalNumber{
-    border: 1px solid black;
-    box-sizing: border-box;
-    box-shadow: 1px 1px;
-    width: 230px;
+  .percentContactedText{
     text-align: center;
-    display: inline-block;
   }
 
   .contacted{
