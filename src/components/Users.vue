@@ -1,18 +1,20 @@
 <template>
   <div class="users" id="content">
+    <img src="static/adapose.jpg"/>
     <h1>Users</h1>
-      <div class="container">
+    <div class="container">
       <div class="toatalNumberBox"><h2>Toatal Number of users</h2>
         <h2 class="amountOfUsersText">{{amountOfUsers}}</h2>
       </div>
-      <div class="percentContactedBox"><h2 class = "peopleContactedHeader">Percent contacted</h2>
-        <h2 class="percentContactedText">{{percentContacted}}%</h2></div>
+    <div class="percentContactedBox"><h2 class = "peopleContactedHeader">Percent contacted</h2>
+      <h2 class="percentContactedText">{{percentContacted}}%</h2>
+      <div><vue-simple-progress class="progressBar">{{percentContacted}}</vue-simple-progress></div>
+    </div>
       <div class="acceptedContactsBox">
-        <h2 class = "acceptedContacts">Percent accepted:</h2>
+      <h2 class = "acceptedContacts">Percent accepted:</h2>
       </div>
     </div>
-    <img src="static/adapose.jpg"/>
-      <form v-on:submit="addUser">
+        <form v-on:submit="addUser">
         <input type="text" v-model="newUser.name" placeholder="Enter Name" id="nameBox">
         <br/>
         <input type="text" v-model="newUser.email" placeholder="Enter email" id="emailBox">
@@ -92,10 +94,13 @@ export default {
 
   .container{
     width: 700px;
+    height: 300px;
     box-sizing: border-box;
     text-align: center;
     display: inline-block;
-    margin: auto;
+    margin: 0 auto;
+    padding: 2px;
+
   }
 
   .acceptedContactsBox{
@@ -103,7 +108,7 @@ export default {
     box-sizing: border-box;
     box-shadow: .5px .5px;
     width: 230px;
-    height: 130px;
+    height: 140px;
     text-align: center;
     float: right;
   }
@@ -113,7 +118,7 @@ export default {
     box-sizing: border-box;
     box-shadow: .5px .5px;
     width: 230px;
-    height: 130px;
+    height: 140px;
     text-align: center;
     float: left;
   }
@@ -123,7 +128,7 @@ export default {
     box-sizing: border-box;
     box-shadow: .5px .5px;
     width: 230px;
-    height: 130px;
+    height: 140px;
     text-align: center;
     display: inline-block;
   }
@@ -192,6 +197,7 @@ export default {
       text-align: center;
       width: 150px;
       height: 40px;
+      margin: auto;
     }
 
     #content{

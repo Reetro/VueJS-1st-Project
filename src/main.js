@@ -7,6 +7,8 @@ import vueRouter from 'vue-router'
 import Users from './components/Users'
 import Test from './components/Test'
 import User from './models/User'
+import Notifications from 'vue-notification'
+import ProgressBar from 'vue-simple-progress'
 
 Vue.use(vueResource)
 Vue.use(vueRouter)
@@ -24,7 +26,7 @@ const router = new vueRouter({
 /* eslint-disable no-new */
 new Vue({
   router,
-  components: { App },
+  components: { App, ProgressBar, Notifications }, 
   template:
   `
   <div id=app>
