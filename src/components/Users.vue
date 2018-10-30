@@ -1,12 +1,13 @@
 <template>
   <div class="users" id="content">
+    <notifications group="userInfo" width="350" height="1000" />
     <img src="static/adapose.jpg"/>
     <h1>Users</h1>
     <div class="container">
       <div class="toatalNumberBox"><h2>Toatal Number of users</h2>
         <h2 class="amountOfUsersText">{{amountOfUsers}}</h2>
       </div>
-    <div class="percentContactedBox"><h2 class = "peopleContactedHeader">Percent contacted</h2>
+    <div class="percentContactedBox"><h2 class="peopleContactedHeader">Percent contacted</h2>
       <h2 class="percentContactedText">{{percentContacted}}%</h2>
       <progress-bar size="large" :val="percentContacted"></progress-bar>
     </div>
@@ -26,15 +27,14 @@
           <input type="checkbox" class="toggle" v-model="user.contacted">
           <span :class="{contacted: user.contacted}" id="usersinlist">
             <span v-on:click="toggleUserContacted(user)">{{user.name}}: {{user.email}}</span> <button class="xButton" v-on:click="deleteUser(user)">X</button>
-          </span>
-        </li>
-      </ul>
+        </span>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 import User from '../models/User.js'
-import Notifications from 'vue-notification'
 import ProgressBar from 'vue-simple-progress'
 
 export default {
@@ -73,17 +73,20 @@ export default {
       });
   },
   computed: {
-    progressBarAmount: function () {
-      console.log('whoo')
-    },
     amountOfUsers: function () {
       return this.users.length
     },
     amountContacted: function () {
-      var totalContacted = 0
+      let totalContacted = 0
       for (let user of this.users) {
         if (user.contacted) {
           totalContacted ++
+          this.$notify({
+            group: 'userInfo',
+            title: 'Important message',
+            text: 'Hello user! This is a notification!',
+            duration: 1000
+          })
         }
       }
       return totalContacted
@@ -93,12 +96,10 @@ export default {
     }
   },
   components: {
-    Notifications, ProgressBar
+   ProgressBar
   }
 }
 </script>
-
-
 
 <style scoped>
 

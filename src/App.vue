@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <users/>
-  </div>
+    </div>
 </template>
 
 <script>

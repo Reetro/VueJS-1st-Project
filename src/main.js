@@ -7,10 +7,9 @@ import vueRouter from 'vue-router'
 import Users from './components/Users'
 import Test from './components/Test'
 import User from './models/User'
+import Notifications from 'vue-notification'
 
-
-
-
+Vue.use(Notifications)
 Vue.use(vueResource)
 Vue.use(vueRouter)
 Vue.config.productionTip = false
@@ -27,7 +26,7 @@ const router = new vueRouter({
 /* eslint-disable no-new */
 new Vue({
   router,
-  components: { App }, 
+  components: { App },
   template:
   `
   <div id=app>
