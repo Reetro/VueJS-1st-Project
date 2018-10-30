@@ -8,7 +8,7 @@
       </div>
     <div class="percentContactedBox"><h2 class = "peopleContactedHeader">Percent contacted</h2>
       <h2 class="percentContactedText">{{percentContacted}}%</h2>
-      <div><vue-simple-progress class="progressBar">{{percentContacted}}</vue-simple-progress></div>
+      <progress-bar size="large" :val="percentContacted"></progress-bar>
     </div>
       <div class="acceptedContactsBox">
       <h2 class = "acceptedContacts">Percent accepted:</h2>
@@ -34,6 +34,8 @@
 
 <script>
 import User from '../models/User.js'
+import Notifications from 'vue-notification'
+import ProgressBar from 'vue-simple-progress'
 
 export default {
   name: 'users',
@@ -71,6 +73,9 @@ export default {
       });
   },
   computed: {
+    progressBarAmount: function () {
+      console.log('whoo')
+    },
     amountOfUsers: function () {
       return this.users.length
     },
@@ -86,9 +91,14 @@ export default {
     percentContacted: function () {
       return Math.floor((this.amountContacted / this.amountOfUsers) * 100)
     }
+  },
+  components: {
+    Notifications, ProgressBar
   }
 }
 </script>
+
+
 
 <style scoped>
 
