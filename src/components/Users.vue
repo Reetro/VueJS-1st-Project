@@ -1,6 +1,6 @@
 <template>
   <div class="users" id="content">
-    <notifications group="userInfo" width="350" height="1000" />
+    <notifications group="userInfo" width="350" />
     <img src="static/adapose.jpg"/>
     <h1>Users</h1>
     <div class="container">
@@ -26,7 +26,7 @@
         <li v-for="user in users">
           <input type="checkbox" class="toggle" v-model="user.contacted">
           <span :class="{contacted: user.contacted}" id="usersinlist">
-            <span v-on:click="toggleUserContacted(user)">{{user.name}}: {{user.email}}</span> <button class="xButton" v-on:click="deleteUser(user)">X</button>
+            <span v-on:click="toggleUserContacted(user), didUserAcceptContact(user)">{{user.name}}: {{user.email}}</span> <button class="xButton" v-on:click="deleteUser(user)">X</button>
         </span>
       </li>
     </ul>
@@ -42,8 +42,8 @@ export default {
   data () {
     return {
       newUser: {},
-      users: []
-    }
+      users: [],
+          }
   },
   methods: {
     addUser: function (e) {
@@ -62,6 +62,35 @@ export default {
     },
     setUserContacted: function (user, contacted) {
       this.users[this.users.indexOf(user)].contacted = contacted
+    },
+    didUserAcceptContact: function (user) {
+      var chose = Math.round(Math.random())
+      var acceptedUsers = 0
+      switch (chose) {
+        case 0:
+          if (user.contact) {
+            this.$notify({
+                  group: 'userInfo',
+                  title: 'Email' + (user.email),
+                  text:  'User' + (user.name) + 'didnt accept contact',
+                  duration: 4000
+            })
+          }
+            break;
+        case 1:
+          if (user.contacted) {
+            this.$notify({
+                group: 'userInfo',
+                title: 'Email    ' + (user.email),
+                text:  'User     ' + (user.name) + 'did accept contact',
+                duration: 4000
+              })
+          }
+          acceptedUsers ++
+          console.log(acceptedUsers)
+          break;
+      }
+      return acceptedUsers
     }
   },
   created: function () {
@@ -81,12 +110,6 @@ export default {
       for (let user of this.users) {
         if (user.contacted) {
           totalContacted ++
-          this.$notify({
-            group: 'userInfo',
-            title: 'Important message',
-            text: 'Hello user! This is a notification!',
-            duration: 1000
-          })
         }
       }
       return totalContacted
