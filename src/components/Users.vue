@@ -7,13 +7,14 @@
       <div class="toatalNumberBox"><h2>Toatal Number of users</h2>
         <h2 class="amountOfUsersText">{{amountOfUsers}}</h2>
       </div>
-    <div class="percentContactedBox"><h2 class="peopleContactedHeader">Percent contacted</h2>
-      <h2 class="percentContactedText">{{percentContacted}}%</h2>
-      <progress-bar size="large" :val="percentContacted"></progress-bar>
+    <div class="percentContactedBox">
+      <h2 class="peopleContactedHeader">Percent contacted</h2>
+      <h2 class="percentContactedText">{{percentContacted}}%<progress-bar size="large" :val="percentContacted"></progress-bar></h2>
     </div>
       <div class="acceptedContactsBox">
-      <h2 class = "acceptedContacts">Percent accepted:</h2>
-      </div>
+      <h2 class = "acceptedContacts">Percent accepted</h2>
+      <h2 class="percentOfAcceptedUsersText">{{percentOfAcceptedUsers}}%<progress-bar size="large" :val="percentOfAcceptedUsers"></progress-bar></h2>
+    </div>
     </div>
         <form v-on:submit="addUser">
         <input type="text" v-model="newUser.name" placeholder="Enter Name" id="nameBox">
@@ -24,9 +25,9 @@
       </form>
       <ul id="contactlist">
         <li v-for="user in users">
-          <input type="checkbox" class="toggle" v-model="user.contacted">
+          <input type="checkbox" class="toggle" v-model="user.contacted" v-on:change="toggleAcceptedUserContacted(user)">
           <span :class="{contacted: user.contacted}" id="usersinlist">
-            <span v-on:click="toggleUserContacted(user), didUserAcceptContact(user)">{{user.name}}: {{user.email}}</span> <button class="xButton" v-on:click="deleteUser(user)">X</button>
+            <span v-on:click="toggleUserContacted(user), toggleAcceptedUserContacted(user)">{{user.name}}: {{user.email}}</span> <button class="xButton" v-on:click="deleteUser(user)">X</button>
         </span>
       </li>
     </ul>
@@ -43,14 +44,15 @@ export default {
     return {
       newUser: {},
       users: [],
-          }
+    }
   },
   methods: {
     addUser: function (e) {
       this.users.push({
         name: this.newUser.name,
         email: this.newUser.email,
-        contacted: false
+        contacted: false,
+        acceptedContactes: false
       });
       e.preventDefault();
     },
@@ -60,37 +62,46 @@ export default {
     toggleUserContacted: function (user) {
       this.setUserContacted(user, !user.contacted)
     },
+    toggleAcceptedUserContacted: function (user) {
+      if (this.didUserAcceptContact(user)) {
+        this.setUserAcceptedContacted(user, !user.acceptedContactes)
+      }
+    },
     setUserContacted: function (user, contacted) {
       this.users[this.users.indexOf(user)].contacted = contacted
     },
+    setUserAcceptedContacted: function (user, acceptedContactes) {
+      this.users[this.users.indexOf(user)].acceptedContactes = acceptedContactes
+    },
     didUserAcceptContact: function (user) {
-      var chose = Math.round(Math.random())
-      var acceptedUsers = 0
-      switch (chose) {
+        let chose = Math.round(Math.random())
+        let didAccept = false
+        switch (chose) {
         case 0:
-          if (user.contact) {
-            this.$notify({
-                  group: 'userInfo',
-                  title: 'Email' + (user.email),
-                  text:  'User' + (user.name) + 'didnt accept contact',
-                  duration: 4000
-            })
-          }
-            break;
+        chose = 0
+        if (user.contacted) {
+          this.$notify({
+             group: 'userInfo',
+             title: 'Email    ' + (user.email),
+             text:  'User     ' + (user.name) + '   didnt accepted contact',
+             duration: 4000
+           })
+           didAccept = false
+        }
+        break
         case 1:
           if (user.contacted) {
             this.$notify({
-                group: 'userInfo',
-                title: 'Email    ' + (user.email),
-                text:  'User     ' + (user.name) + 'did accept contact',
-                duration: 4000
-              })
+               group: 'userInfo',
+               title: 'Email    ' + (user.email),
+               text:  'User     ' + (user.name) + '  did accepted contact',
+               duration: 4000
+             })
+             didAccept = true
           }
-          acceptedUsers ++
-          console.log(acceptedUsers)
-          break;
+          break
       }
-      return acceptedUsers
+      return didAccept
     }
   },
   created: function () {
@@ -116,6 +127,15 @@ export default {
     },
     percentContacted: function () {
       return Math.floor((this.amountContacted / this.amountOfUsers) * 100)
+    },
+    percentOfAcceptedUsers: function () {
+      let amountOfAcceptedUsers = 0
+      for (let user of this.users) {
+        if (user.acceptedContactes) {
+          amountOfAcceptedUsers ++
+        }
+      }
+      return Math.floor((amountOfAcceptedUsers / this.amountOfUsers) * 100)
     }
   },
   components: {
