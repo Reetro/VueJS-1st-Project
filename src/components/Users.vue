@@ -1,6 +1,6 @@
 <template>
   <div class="users" id="content">
-    <notifications group="userInfo" width="350" />
+    <notifications group="userInfo" classes="userInfo" width="350" />
     <img src="static/adapose.jpg"/>
     <h1>Users</h1>
     <div class="container">
@@ -145,6 +145,10 @@ export default {
 </script>
 
 <style scoped>
+
+  .notifications-content{
+    font-size: 300px;
+  }
 
   .container{
     width: 700px;
