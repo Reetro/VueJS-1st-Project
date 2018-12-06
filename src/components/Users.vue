@@ -146,10 +146,6 @@ export default {
 
 <style scoped>
 
-  .notifications-content{
-    font-size: 300px;
-  }
-
   .container{
     width: 700px;
     height: 300px;
