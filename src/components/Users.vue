@@ -259,7 +259,7 @@ export default {
     }
 
     #content{
-      max-width: 500px;
+      max-width: 750px;
       margin:auto;
       text-align: center;
     }
