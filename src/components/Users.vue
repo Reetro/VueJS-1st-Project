@@ -126,7 +126,7 @@ export default {
       return totalContacted
     },
     percentContacted: function () {
-      return Math.floor((this.amountContacted / this.amountOfUsers) * 100)
+      return Math.floor((this.amountContacted / this.amountOfUsers) * 100 || 0)
     },
     percentOfAcceptedUsers: function () {
       let amountOfAcceptedUsers = 0
@@ -135,7 +135,7 @@ export default {
           amountOfAcceptedUsers ++
         }
       }
-      return Math.floor((amountOfAcceptedUsers / this.amountOfUsers) * 100)
+      return Math.floor((amountOfAcceptedUsers / this.amountOfUsers) * 100 || 0)
     }
   },
   components: {
