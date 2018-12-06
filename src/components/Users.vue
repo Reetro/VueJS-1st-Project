@@ -4,7 +4,7 @@
     <img src="static/adapose.jpg"/>
     <h1>Users</h1>
     <div class="container">
-      <div class="toatalNumberBox"><h2>Toatal Number of users</h2>
+      <div class="totalNumberBox"><h2>Total Number of users</h2>
         <h2 class="amountOfUsersText">{{amountOfUsers}}</h2>
       </div>
     <div class="percentContactedBox">
@@ -181,7 +181,7 @@ export default {
     float: left;
   }
 
-  .toatalNumberBox{
+  .totalNumberBox{
     border: 2px solid black;
     box-sizing: border-box;
     box-shadow: .5px .5px;
