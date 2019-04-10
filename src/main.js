@@ -8,7 +8,9 @@ import Users from './components/Users'
 import Test from './components/Test'
 import User from './models/User'
 import Notifications from 'vue-notification'
+import BootstrapVue from 'bootstrap-vue'
 
+Vue.use(BootstrapVue)
 Vue.use(Notifications)
 Vue.use(vueResource)
 Vue.use(vueRouter)

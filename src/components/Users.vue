@@ -1,6 +1,14 @@
 <template>
   <div class="users" id="content">
     <notifications group="userInfo" classes="userInfo" width="350" />
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Dropdown button
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-Item" href="#">Does a thing</a>
+      </div>
+    </div>
     <img src="static/adapose.jpg"/>
     <h1>Users</h1>
     <div class="container">
@@ -37,6 +45,7 @@
 <script>
 import User from '../models/User.js'
 import ProgressBar from 'vue-simple-progress'
+import BootStrap from 'bootstrap/dist/css/bootstrap.css'
 
 export default {
   name: 'users',
